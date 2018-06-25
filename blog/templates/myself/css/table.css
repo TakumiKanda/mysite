@@ -1,0 +1,29 @@
+table {
+	border: #2D0F09 1px solid;
+	border-collapse: collapse;
+	font-size: 11px;
+	width: 100%;
+	color: #F6ECEF;
+	table-layout: fixed;
+}
+table th.t_top {
+	border: #FFFFFF 1px dashed;
+	background-color: #35140C;
+	text-align: center;
+	padding: 10px;
+	font: bold;
+}
+table td.t_line01 {
+	border: #FFFFFF 1px dashed;
+	background-color: #11b07e;
+	vertical-align: center;
+	text-align: center;
+	padding: 10px;
+}
+table td.t_line02 {
+	border: #A84673 1px dashed;
+	background-color: #752241;
+	vertical-align: top;
+	text-align: left;
+	padding: 10px;
+}

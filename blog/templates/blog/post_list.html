@@ -12,8 +12,6 @@
 		<link rel = "stylesheet" href = "{% static 'css/interface.css' %}">
 		<!-- button.css -->
 		<link rel = "stylesheet" href = "{% static 'css/button.css' %}">
-		<!-- main.js -->
-		<script type = "text/javascript" src = "{% static 'javascript/main.js' %}"></script>
 	</head>
 	<body>
 		<div class = "container">
@@ -27,22 +25,22 @@
 						<ul style = "list-style:none;">
 							<li>
 								{% csrf_token %}
-								<button name = "red" onclick = "changeBoxColor('#ff7f7f');" type = "submit" class = "btn_red"></button>
+								<button name = "red" onclick = "changeBoxColor('#ff7f7f');" class = "btn_red"></button>
 							</li>
 							<li>
-								<button name = "ore" onclick = "changeBoxColor('#ffbf7f');" type = "submit" class = "btn_ore"></button>
+								<button name = "ore" onclick = "changeBoxColor('#ffbf7f');" class = "btn_ore"></button>
 							</li>
 							<li>
-								<button name = "yel" onclick = "changeBoxColor('#FFFF00');" type = "submit" class = "btn_yel"></button>
+								<button name = "yel" onclick = "changeBoxColor('#FFFF00');" class = "btn_yel"></button>
 							</li>
 							<li>
-								<button name = "gre" onclick = "changeBoxColor('#bfff7f');" type = "submit" class = "btn_gre"></button>
+								<button name = "gre" onclick = "changeBoxColor('#bfff7f');" class = "btn_gre"></button>
 							</li>
 							<li>
-								<button name = "blu" onclick = "changeBoxColor('#7fbfff');" type = "submit" class = "btn_blu"></button>
+								<button name = "blu" onclick = "changeBoxColor('#7fbfff');" class = "btn_blu"></button>
 							</li>
 							<li>
-								<button name = "pur" onclick = "changeBoxColor('#bf7fff');" type = "submit" class = "btn_pur"></button>
+								<button name = "pur" onclick = "changeBoxColor('#bf7fff');" class = "btn_pur"></button>
 							</li>
 						</ul>
 					</form>
@@ -56,13 +54,13 @@
 						{% endfor %}
 					</div>
 					<div>
-						<label for = "select" class = "select">
-							<form action="{% url 'post_list' %}" id = "select" method="POST" enctype="multipart/form-data">
-								{% csrf_token %}
+						<form action="{% url 'post_list' %}" id = "select" method="POST" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label for = "id_image" class = "select">
 								{{ form }}
-								<button name = "upload" id = "Upload" class = "upload" type="submit">Upload</button> 
-							</form>
-						</label>
+							</label>
+							<button name = "upload" id = "Upload" class = "upload" type="submit">Upload</button> 
+						</form>
 					</div>
 				</div>
 			</div>

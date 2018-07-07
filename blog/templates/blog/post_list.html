@@ -16,7 +16,7 @@
 	<body>
 		<div class = "container">
 			<header class = "header">
-				<img src = "{% static 'image/logo.png' %}" height = "190"/>
+				<img src = "{% static 'image/logo.png' %}" class = "logo"/>
 			</header>
 			
 			<div class = "content">
@@ -25,22 +25,22 @@
 						<ul style = "list-style:none;">
 							<li>
 								{% csrf_token %}
-								<button name = "red" onclick = "changeBoxColor('#ff7f7f');" class = "btn_red"></button>
+								<button name = "red" class = "btn_red"></button>
 							</li>
 							<li>
-								<button name = "ore" onclick = "changeBoxColor('#ffbf7f');" class = "btn_ore"></button>
+								<button name = "ore" class = "btn_ore"></button>
 							</li>
 							<li>
-								<button name = "yel" onclick = "changeBoxColor('#FFFF00');" class = "btn_yel"></button>
+								<button name = "yel" class = "btn_yel"></button>
 							</li>
 							<li>
-								<button name = "gre" onclick = "changeBoxColor('#bfff7f');" class = "btn_gre"></button>
+								<button name = "gre" class = "btn_gre"></button>
 							</li>
 							<li>
-								<button name = "blu" onclick = "changeBoxColor('#7fbfff');" class = "btn_blu"></button>
+								<button name = "blu" class = "btn_blu"></button>
 							</li>
 							<li>
-								<button name = "pur" onclick = "changeBoxColor('#bf7fff');" class = "btn_pur"></button>
+								<button name = "pur" class = "btn_pur"></button>
 							</li>
 						</ul>
 					</form>
@@ -58,8 +58,14 @@
 							{% csrf_token %}
 							<label for = "id_image" class = "select">
 								{{ form }}
+								<img src = "{% static 'image/file_icon.svg' %}" class = "sel_icon"></a>
 							</label>
-							<button name = "upload" id = "Upload" class = "upload" type="submit">Upload</button> 
+							<div class = "upload" style = "background:{{ color }};">
+								<label class = "{{ up }}" for = "upload">
+									Upload
+								</label>
+									<button id = "upload" name = "upload" class = "effect" type = "submit" style = "color:{{ color }};" />
+							</div>
 						</form>
 					</div>
 				</div>

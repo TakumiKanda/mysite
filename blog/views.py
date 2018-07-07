@@ -7,6 +7,8 @@ from PIL import Image
 import cv2
 import sklearn
 from sklearn.cluster import KMeans
+import numpy as np
+import io
 import os
 
 def select_color_tag(color):
@@ -60,7 +62,7 @@ def select_color_tag(color):
     	elif r/b*16 > 4.5 and r/b*16 <= 12.5:
     		return 'purple'
     	else:
-    		return 'red'
+    		return 'purple'
     else:
     	if b/r*16 > 12.5 and b/r*16 <= 16:
     		return 'red'
@@ -74,6 +76,8 @@ def post_list(req):
         return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.all(),
+            'color': '#ff7f7f',
+            'up': 'up_red',
         })
 
     elif req.method == 'POST':
@@ -81,44 +85,51 @@ def post_list(req):
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'red'),
+            'color': '#ff7f7f',
+            'up': 'up_red',
             })
         if 'ore' in req.POST:
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'orange'),
+            'color': '#ffbf7f',
+            'up': 'up_ore',
             })
         if 'yel' in req.POST:
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'yellow'),
+            'color': '#ffff7f',
+            'up': 'up_yel',
             })
         if 'gre' in req.POST:
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'green'),
+            'color': '#bfff7f',
+            'up': 'up_gre',
             })
         if 'blu' in req.POST:
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'blue'),
+            'color': '#7fbfff',
+            'up': 'up_blu',
             })
         if 'pur' in req.POST:
             return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = 'purple'),
+            'color': '#bf7fff',
+            'up': 'up_pur',
             })
         
         if 'upload' in req.POST:
             form = PhotoForm(req.POST, req.FILES)
             if not form.is_valid():
                 raise ValueError('invalid form')
-            print(settings.MEDIA_URL, type(req.FILES['image']))
-            cv2_img = cv2.imread(os.path.join(settings.BASE_DIR, 'media', 'images', req.FILES['image'].name))
-            try:
-                cv2_img = cv2.resize(cv2_img, (150, 150))
-            except:
-                cv2_img = cv2.imread(req.FILES['image'].temporary_file_path())
-                cv2_img = cv2.resize(cv2_img, (150, 150))
+            cv2_img = cv2.imread(req.FILES['image'].temporary_file_path())
+            cv2_img = cv2.resize(cv2_img, (150, 150))
             cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
             cv2_img = cv2_img.reshape((cv2_img.shape[0] * cv2_img.shape[1], 3))
             cluster = KMeans(n_clusters = 1)

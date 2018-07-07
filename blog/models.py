@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 class Post(models.Model):
@@ -19,5 +21,7 @@ class Post(models.Model):
         return self.title
         
 class Photo(models.Model):
-    image = models.ImageField(upload_to='images')
+    image = ProcessedImageField(upload_to='images',
+                                processors=[ResizeToFill(255*2, 170*2)],
+                                options={'quality': 100})
     color_tag = models.CharField(max_length = 100, default = "NULL")

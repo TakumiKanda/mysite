@@ -167,7 +167,7 @@
     bottom:-140px;
     background:#FFF;
     position:absolute;
-    transition:all .5s ease;
+    transition:all .4s ease;
     z-index:1;
 }
 
@@ -184,7 +184,6 @@
 }
 
 .upload:hover .up_yel{
-    text-shadow: 1px 1px 0 #cbcb4b;
     color:#ffff7f;
 }
 

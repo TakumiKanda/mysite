@@ -8,6 +8,7 @@ import cv2
 import sklearn
 from sklearn.cluster import KMeans
 import numpy as np
+import datetime
 import io
 import os
 
@@ -70,59 +71,37 @@ def select_color_tag(color):
     		return 'purple'
     	else:
     		return 'red'
+    		
+def create_render(req, color, color_code, up_color):
+    return render(req, 'blog/post_list.html', {
+            'form': PhotoForm(),
+            'photos': Photo.objects.filter(color_tag = color).order_by('-created_date'),
+            'color': color_code,
+            'up': up_color,
+            })
 
 def post_list(req):
     if req.method == 'GET':
         return render(req, 'blog/post_list.html', {
             'form': PhotoForm(),
-            'photos': Photo.objects.all(),
+            'photos': Photo.objects.all().order_by('-created_date'),
             'color': '#ff7f7f',
             'up': 'up_red',
         })
 
     elif req.method == 'POST':
         if 'red' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'red'),
-            'color': '#ff7f7f',
-            'up': 'up_red',
-            })
+            return create_render(req, 'red', '#ff7f7f', 'up_red')
         if 'ore' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'orange'),
-            'color': '#ffbf7f',
-            'up': 'up_ore',
-            })
+            return create_render(req, 'orange', '#ffbf7f', 'up_ore')
         if 'yel' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'yellow'),
-            'color': '#ffff7f',
-            'up': 'up_yel',
-            })
+            return create_render(req, 'yellow', '#ffff7f', 'up_yel')
         if 'gre' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'green'),
-            'color': '#bfff7f',
-            'up': 'up_gre',
-            })
+            return create_render(req, 'green', '#bfff7f', 'up_gre')
         if 'blu' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'blue'),
-            'color': '#7fbfff',
-            'up': 'up_blu',
-            })
+            return create_render(req, 'blue', '#7fbfff', 'up_blu')
         if 'pur' in req.POST:
-            return render(req, 'blog/post_list.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.filter(color_tag = 'purple'),
-            'color': '#bf7fff',
-            'up': 'up_pur',
-            })
+            return create_render(req, 'purple', '#bf7fff', 'up_pur')
         
         if 'upload' in req.POST:
             form = PhotoForm(req.POST, req.FILES)
@@ -139,7 +118,8 @@ def post_list(req):
 
             bright_color = '%02x%02x%02x' % tuple(cluster_centers_arr[0])
             
-            photo = Photo(color_tag = select_color_tag(bright_color))
+            photo = Photo(color_tag = select_color_tag(bright_color),
+                            created_date = datetime.datetime.now().strftime('%s'))
             photo.image = form.cleaned_data['image']
             photo.save()
 

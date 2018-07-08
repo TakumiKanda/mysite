@@ -50,6 +50,7 @@ button:hover, label:hover, img:hover {
     height: 2000px;
     line-height: 38px;
     background: #FFF;
+    overflow: hidden;
 }
 
 .side {

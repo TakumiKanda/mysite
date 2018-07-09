@@ -26,7 +26,14 @@ button:hover, label:hover, img:hover {
 }
 
 .logo {
-    height: 45%;
+    padding: 0;
+    border-style: none;
+    background: transparent;
+}
+
+.logo img {
+    display: block;
+    height: 48px;
 }
 
 .footer {

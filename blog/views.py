@@ -90,6 +90,13 @@ def post_list(req):
         })
 
     elif req.method == 'POST':
+        if 'all' in req.POST:
+            return render(req, 'blog/post_list.html', {
+            'form': PhotoForm(),
+            'photos': Photo.objects.all().order_by('-created_date'),
+            'color': '#ff7f7f',
+            'up': 'up_red',
+            })
         if 'red' in req.POST:
             return create_render(req, 'red', '#ff7f7f', 'up_red')
         if 'ore' in req.POST:
@@ -114,7 +121,7 @@ def post_list(req):
             cluster = KMeans(n_clusters = 1)
             cluster.fit(X = cv2_img)
 
-            cluster_centers_arr = cluster.cluster_centers_.astype(int, copy=False)
+            cluster_centers_arr = cluster.cluster_centers_.astype(int, copy = False)
 
             bright_color = '%02x%02x%02x' % tuple(cluster_centers_arr[0])
             

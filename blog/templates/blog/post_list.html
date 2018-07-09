@@ -1,80 +1,35 @@
-{% load static %}
-
-<!DOCTYPE html>
+{% load staticfiles %}
 <html>
-	<head>
-		<title>
-			Palette
-		</title>
-		<!-- Normalize.css -->
-		<link rel = "stylesheet" href = "{% static 'css/Normalize.css' %}">
-		<!-- interface.css -->
-		<link rel = "stylesheet" href = "{% static 'css/interface.css' %}">
-		<!-- button.css -->
-		<link rel = "stylesheet" href = "{% static 'css/button.css' %}">
-	</head>
-	<body>
-		<div class = "container">
-			<header class = "header">
-				<img src = "{% static 'image/logo.png' %}" class = "logo"/>
-			</header>
-			
-			<div class = "content">
-				<div id = "sideBar" class = "side">
-					<form action="{% url 'post_list' %}" method="POST">
-						<ul style = "list-style:none;">
-							<li>
-								{% csrf_token %}
-								<button name = "red" class = "btn_red"></button>
-							</li>
-							<li>
-								<button name = "ore" class = "btn_ore"></button>
-							</li>
-							<li>
-								<button name = "yel" class = "btn_yel"></button>
-							</li>
-							<li>
-								<button name = "gre" class = "btn_gre"></button>
-							</li>
-							<li>
-								<button name = "blu" class = "btn_blu"></button>
-							</li>
-							<li>
-								<button name = "pur" class = "btn_pur"></button>
-							</li>
-						</ul>
-					</form>
-				</div>
-				<div class = "main">
-					<div class = "grid">
-						{% for p in photos %}
-							<figure class = "module d{{ forloop.counter }}">
-								<img src = "{{ p.image.url }}" />
-							</figure>
-						{% endfor %}
-					</div>
-					<div>
-						<form action="{% url 'post_list' %}" id = "select" method="POST" enctype="multipart/form-data">
-							{% csrf_token %}
-							<label for = "id_image" class = "select">
-								{{ form }}
-								<img src = "{% static 'image/file_icon.svg' %}" class = "sel_icon"></a>
-							</label>
-							<div class = "upload" style = "background:{{ color }};">
-								<label class = "{{ up }}" for = "upload">
-									Upload
-								</label>
-									<button id = "upload" name = "upload" class = "effect" type = "submit" style = "color:{{ color }};" />
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			
-			<footer class = "footer">
-				logo designed by www.designevo.com
-			</footer>
-		</div>
-	</body>
+    <head>
+        <title>Django Girls blog</title>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class = "page-header">
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
+
+        
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class = "post">
+                        <p>published: 14.06.2014, 12:14</p>
+                        <h2><a href="">My first post</a></h2>
+                        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    </div>
+        
+
+                    <div class = "post">
+                        <p>published: 14.06.2014, 12:14</p>
+                        <h2><a href="">My second post</a></h2>
+                        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
-			

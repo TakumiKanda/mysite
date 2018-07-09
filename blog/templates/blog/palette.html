@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<title>
+			Palette
+		</title>
+		<!-- Normalize.css -->
+		<link rel = "stylesheet" href = "{% static 'css/Normalize.css' %}">
+		<!-- interface.css -->
+		<link rel = "stylesheet" href = "{% static 'css/interface.css' %}">
+		<!-- button.css -->
+		<link rel = "stylesheet" href = "{% static 'css/button.css' %}">
+	</head>
+	<body>
+		<div class = "container">
+			<header class = "header">
+				<form action = "{% url 'post_list' %}" method = "POST">
+					{% csrf_token %}
+					<button name = "all" class = "logo">
+						<img src = "{% static 'image/logo.png' %}" />
+					</button>
+				</form>
+			</header>
+			
+			<div class = "content">
+				<div id = "sideBar" class = "side">
+					<form action = "{% url 'post_list' %}" method = "POST">
+						{% csrf_token %}
+						<ul style = "list-style:none;">
+							<li>
+								<button name = "red" class = "btn_red" />
+							</li>
+							<li>
+								<button name = "ore" class = "btn_ore" />
+							</li>
+							<li>
+								<button name = "yel" class = "btn_yel" />
+							</li>
+							<li>
+								<button name = "gre" class = "btn_gre" />
+							</li>
+							<li>
+								<button name = "blu" class = "btn_blu" />
+							</li>
+							<li>
+								<button name = "pur" class = "btn_pur" />
+							</li>
+						</ul>
+					</form>
+				</div>
+				<div class = "main">
+					<div class = "grid">
+						{% for p in photos %}
+							<figure class = "module d{{ forloop.counter }}">
+								<img src = "{{ p.image.url }}" />
+							</figure>
+						{% endfor %}
+					</div>
+					<div>
+						<form action = "{% url 'post_list' %}" id = "select" method = "POST" enctype = "multipart/form-data">
+							{% csrf_token %}
+							<label for = "id_image" class = "select">
+								{{ form }}
+								<img src = "{% static 'image/file_icon.svg' %}" class = "sel_icon" />
+							</label>
+							<div class = "upload" style = "background:{{ color }};">
+								<label class = "{{ up }}" for = "upload">
+									Upload
+								</label>
+								<button id = "upload" name = "upload" class = "effect" style = "color:{{ color }};" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<footer class = "footer">
+				logo designed by www.designevo.com
+			</footer>
+		</div>
+	</body>
+</html>
+			

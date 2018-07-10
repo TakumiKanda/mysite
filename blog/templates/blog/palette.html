@@ -8,16 +8,16 @@
 			Palette
 		</title>
 		<!-- Normalize.css -->
-		<link rel = "stylesheet" href = "{% static 'css/Normalize.css' %}">
+		<link rel = "stylesheet" href = "{% static 'css/Normalize.css' %}" />
 		<!-- interface.css -->
-		<link rel = "stylesheet" href = "{% static 'css/interface.css' %}">
+		<link rel = "stylesheet" href = "{% static 'css/interface.css' %}" />
 		<!-- button.css -->
-		<link rel = "stylesheet" href = "{% static 'css/button.css' %}">
+		<link rel = "stylesheet" href = "{% static 'css/button.css' %}" />
 	</head>
 	<body>
 		<div class = "container">
 			<header class = "header">
-				<form action = "{% url 'post_list' %}" method = "POST">
+				<form action = "{% url 'palette' %}" method = "POST">
 					{% csrf_token %}
 					<button name = "all" class = "logo">
 						<img src = "{% static 'image/logo.png' %}" />
@@ -27,7 +27,7 @@
 			
 			<div class = "content">
 				<div id = "sideBar" class = "side">
-					<form action = "{% url 'post_list' %}" method = "POST">
+					<form action = "{% url 'palette' %}" method = "POST">
 						{% csrf_token %}
 						<ul style = "list-style:none;">
 							<li>
@@ -60,7 +60,7 @@
 						{% endfor %}
 					</div>
 					<div>
-						<form action = "{% url 'post_list' %}" id = "select" method = "POST" enctype = "multipart/form-data">
+						<form action = "{% url 'palette' %}" id = "select" method = "POST" enctype = "multipart/form-data">
 							{% csrf_token %}
 							<label for = "id_image" class = "select">
 								{{ form }}

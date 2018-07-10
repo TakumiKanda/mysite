@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-'''
 from .forms import PhotoForm
 from .models import Photo
-'''
-'''
 import PIL
 from PIL import Image
 import cv2
@@ -14,9 +11,7 @@ import numpy as np
 import datetime
 import io
 import os
-'''
 
-'''
 def select_color_tag(color):
     r = int(color[0:2], 16)
     g = int(color[2:4], 16)
@@ -69,32 +64,37 @@ def select_color_tag(color):
     		return 'purple'
     	else:
     		return 'purple'
-    else:
+    elif r > b > g:
     	if b/r*16 > 12.5 and b/r*16 <= 16:
     		return 'red'
-    	if b/r*16 > 4.5 and b/r*16 <= 12.5:
+    	elif b/r*16 > 4.5 and b/r*16 <= 12.5:
     		return 'purple'
     	else:
     		return 'red'
+    else:
+        return 'mono'
     		
 def create_render(req, color, color_code, up_color):
-    return render(req, 'blog/post_list.html', {
+    return render(req, 'blog/palette.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.filter(color_tag = color).order_by('-created_date'),
             'color': color_code,
             'up': up_color,
             })
-    
-'''
 
-def post_list(req):
+
+def palette(req):
     if req.method == 'GET':
-        return render(req, 'blog/post_list.html', {
-        })
-    '''
+        return render(req, 'blog/palette.html', {
+            'form': PhotoForm(),
+            'photos': Photo.objects.all().order_by('-created_date'),
+            'color': '#ff7f7f',
+            'up': 'up_red',
+            })
+        
     elif req.method == 'POST':
         if 'all' in req.POST:
-            return render(req, 'blog/post_list.html', {
+            return render(req, 'blog/palette.html', {
             'form': PhotoForm(),
             'photos': Photo.objects.all().order_by('-created_date'),
             'color': '#ff7f7f',
@@ -117,6 +117,7 @@ def post_list(req):
             form = PhotoForm(req.POST, req.FILES)
             if not form.is_valid():
                 raise ValueError('invalid form')
+            
             cv2_img = cv2.imread(req.FILES['image'].temporary_file_path())
             cv2_img = cv2.resize(cv2_img, (150, 150))
             cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
@@ -133,5 +134,5 @@ def post_list(req):
             photo.image = form.cleaned_data['image']
             photo.save()
 
-            return redirect('/')    
-    '''                                               
+            return redirect('/')
+                                             

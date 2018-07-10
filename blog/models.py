@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils import timezone
-'''
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-'''
 import datetime
 
 
@@ -22,12 +20,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
- 
-'''       
+      
 class Photo(models.Model):
     image = ProcessedImageField(upload_to='images',
-                                processors=[ResizeToFill(255*2, 170*2)],
+                                processors=[ResizeToFill(255*2, 175*2)],
                                 options={'quality': 100})
     color_tag = models.CharField(max_length = 100, default = "NULL")
     created_date = models.CharField(max_length = 100, default = "NULL")
-'''

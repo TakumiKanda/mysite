@@ -105,7 +105,6 @@ button:hover, label:hover, img:hover {
     top: 10px;
     width: 100px;
     height: 540px;
-    color: #fff;
     background: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
 }
@@ -116,6 +115,7 @@ button:hover, label:hover, img:hover {
         table-layout: fixed;
         text-align: center;
         vertical-align: middle;
+        top: 0px;
         width: 100%;
         height: 25px;
         z-index: 3;
@@ -129,17 +129,15 @@ button:hover, label:hover, img:hover {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-auto-rows: minmax(130px, auto);
     grid-gap: 5px;
 }
 
 @media (max-width: 768px) {
     .grid {
-        display: grid;
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         grid-auto-rows: minmax(65px, auto);
-        grid-gap: 5px;
     }
 }
 
@@ -147,7 +145,6 @@ button:hover, label:hover, img:hover {
     transform-origin: center top;
     animation: show 1s backwards;
     overflow: hidden;
-    /* Demo-Specific Styles */
     background: #eaeaea;
     align-items: center;
     justify-content: center;

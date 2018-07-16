@@ -42,6 +42,7 @@
 @media (max-width: 768px) {
     .btn_red {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #e56565 inset;
     }
 }
 
@@ -61,6 +62,7 @@
 @media (max-width: 768px) {
     .btn_ore {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #e5a565 inset;
     }
 }
 
@@ -80,6 +82,7 @@
 @media (max-width: 768px) {
     .btn_yel {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #e5e565 inset;
     }
 }
 
@@ -99,6 +102,7 @@
 @media (max-width: 768px) {
     .btn_gre {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #a5e565 inset;
     }
 }
 
@@ -118,6 +122,7 @@
 @media (max-width: 768px) {
     .btn_blu {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #65a5e5 inset;
     }
 }
 
@@ -137,6 +142,7 @@
 @media (max-width: 768px) {
     .btn_pur {
         top: 0px;
+        box-shadow: 0px 0px 2px 2px #a565e5 inset;
     }
 }
 
@@ -221,41 +227,41 @@
 .effect {
     border-style: none;
     right: 0px;
-    width:80px;
-    height:80px;
-    bottom:-140px;
-    background:#FFF;
-    position:absolute;
-    transition:all .4s ease;
-    z-index:1;
+    width: 80px;
+    height: 80px;
+    bottom: -140px;
+    background: #FFF;
+    position: absolute;
+    transition: all .4s ease;
+    z-index: 1;
 }
 
 .upload:hover .effect{
-    bottom:0;
+    bottom: 0;
 }
 
 .upload:hover .up_red{
-    color:#ff7f7f;
+    color: #ff7f7f;
 }
 
 .upload:hover .up_ore{
-    color:#ffbf7f;
+    color: #ffbf7f;
 }
 
 .upload:hover .up_yel{
-    color:#ffff7f;
+    color: #ffff7f;
 }
 
 .upload:hover .up_gre{
-    color:#bfff7f;
+    color: #bfff7f;
 }
 
 .upload:hover .up_blu{
-    color:#7fbfff;
+    color: #7fbfff;
 }
 
 .upload:hover .up_pur{
-    color:#bf7fff;
+    color: #bf7fff;
 }
 
 @media (max-width: 768px) {
@@ -269,5 +275,11 @@
     .upload label {
         font-size: 12px;
         line-height: 50px;
+    }
+    
+    .effect {
+        width: 50px;
+        height: 50px;
+        bottom: -70px;
     }
 }

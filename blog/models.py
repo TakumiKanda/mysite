@@ -23,7 +23,7 @@ class Post(models.Model):
       
 class Photo(models.Model):
     image = ProcessedImageField(upload_to='images',
-                                processors=[ResizeToFill(255*2, 175*2)],
+                                processors=[ResizeToFill(int(175*2*1.414), 175*2)],
                                 options={'quality': 100})
     color_tag = models.CharField(max_length = 100, default = "NULL")
     created_date = models.CharField(max_length = 100, default = "NULL")

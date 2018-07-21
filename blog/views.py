@@ -95,11 +95,11 @@ def palette(req):
     elif req.method == 'POST':
         if 'all' in req.POST:
             return render(req, 'blog/palette.html', {
-            'form': PhotoForm(),
-            'photos': Photo.objects.all().order_by('-created_date'),
-            'color': '#ff7f7f',
-            'up': 'up_red',
-            })
+                'form': PhotoForm(),
+                'photos': Photo.objects.all().order_by('-created_date'),
+                'color': '#ff7f7f',
+                'up': 'up_red',
+                })
         if 'red' in req.POST:
             return create_render(req, 'red', '#ff7f7f', 'up_red')
         if 'ore' in req.POST:
@@ -116,8 +116,12 @@ def palette(req):
         if 'upload' in req.POST:
             form = PhotoForm(req.POST, req.FILES)
             if not form.is_valid():
-                raise ValueError('invalid form')
-            
+                return render(req, 'blog/palette.html', {
+                    'form': PhotoForm(),
+                    'photos': Photo.objects.all().order_by('-created_date'),
+                    'color': '#ff7f7f',
+                    'up': 'up_red',
+                    })
             cv2_img = cv2.imread(req.FILES['image'].temporary_file_path())
             cv2_img = cv2.resize(cv2_img, (150, 150))
             cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)

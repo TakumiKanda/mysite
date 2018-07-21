@@ -251,8 +251,6 @@ button:hover, label:hover, img:hover {
     }
 }
 
-/* If Grid is supported, remove the margin we set for the fallback */
-
 @supports (display: grid) {
     .module {
         margin: 0;

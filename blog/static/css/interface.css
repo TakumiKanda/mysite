@@ -127,10 +127,6 @@ button:hover, label:hover, img:hover {
         margin: 0px;
         padding: 0px 2%;
     }
-    .side button {
-        margin: 0;
-        padding: 0;
-    }
 }
 
 .grid {

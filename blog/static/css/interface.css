@@ -122,8 +122,7 @@ button:hover, label:hover, img:hover {
     }
     .side li {
         display: inline-block;
-        padding-right: 3%;
-        padding-left: 3%;
+        padding: 0px 3%;
     }
 }
 

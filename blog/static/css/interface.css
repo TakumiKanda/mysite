@@ -124,6 +124,7 @@ button:hover, label:hover, img:hover {
     .side li {
         display: inline-block;
         white-space: nowrap;
+        margin: 0px;
         padding: 0px 2%;
     }
 }

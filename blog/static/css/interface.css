@@ -125,7 +125,11 @@ button:hover, label:hover, img:hover {
         display: inline-block;
         white-space: nowrap;
         margin: 0px;
-        padding: 0px 2%;
+        padding: 0px 3%;
+    }
+    .side button {
+        margin: 0;
+        padding: 0;
     }
 }
 

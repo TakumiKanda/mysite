@@ -27,7 +27,6 @@ jmespath==0.9.3
 kiwisolver==1.0.1
 MarkupSafe==1.0
 matplotlib==2.2.2
-mecab-python3==0.7
 numpy==1.14.5
 oauthlib==2.1.0
 opencv-python==3.4.1.15

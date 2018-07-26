@@ -1,9 +1,10 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang = "ja">
 	<head>
 		<meta charset = "UTF-8">
+		<meta name = "theme-color" content = "{{ color }}">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 		<title>
 			Palette
@@ -21,7 +22,7 @@
 				<form action = "{% url 'palette' %}" method = "POST">
 					{% csrf_token %}
 					<button name = "all" class = "logo">
-						<img src = "{% static 'image/logo.png' %}" />
+						<img src = "{% static 'image/logo.png' %}" alt = "Palette" />
 					</button>
 				</form>
 			</header>
@@ -56,7 +57,7 @@
 					<div class = "grid">
 						{% for p in photos %}
 							<figure class = "module d{{ forloop.counter }}">
-								<img src = "{{ p.image.url }}" />
+								<img src = "{{ p.image.url }}" alt = "" />
 							</figure>
 						{% endfor %}
 					</div>
@@ -65,7 +66,7 @@
 							{% csrf_token %}
 							<label for = "id_image" class = "select">
 								{{ form }}
-								<img src = "{% static 'image/file_icon.svg' %}" class = "sel_icon" />
+								<img class = "sel_icon" src = "{% static 'image/file_icon.svg' %}" alt = "file" />
 							</label>
 							<div class = "upload" style = "background:{{ color }};">
 								<label class = "{{ up }}" for = "upload">
